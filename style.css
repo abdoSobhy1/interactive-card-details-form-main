@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: 30% 1fr;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-image: url(images/bg-main-mobile.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.card>div {
+    position: absolute;
+}
+
+.card .card-back {
+    background-image: url(images/bg-card-back.png);
+    width: 280px;
+    aspect-ratio: 447/245;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%)
+}
+
+.card .card-front {
+    background-image: url(images/bg-card-front.png);
+    width: 280px;
+    aspect-ratio: 447/245;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-62%, 5%)
+}
+
+.card .card-back span {
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 66px;
+    letter-spacing: 2px;
+    right: 30px;
+}
+
+.card .card-front .logo {
+    width: 50px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.card .card-front>span {
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 120px;
+    letter-spacing: 2px;
+    left: 15px;
+}
+
+.card .card-front .card-number {
+    font-size: 20px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.card .card-front div {
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 120px;
+    right: 20px;
+}
+
+.card .card-front div span {
+    letter-spacing: 2px;
+}
+
+@media (min-width:769px) {
+    .container {
+        grid-template-columns: 30% 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .card {
+        background-image: url(images/bg-main-desktop.png);
+    }
+
+    .card .card-back {
+        width: 400px;
+        transform: translate(-20%, -5%);
+    }
+
+    .card .card-front {
+        width: 400px;
+        transform: translate(-35%, -120%)
+    }
+
+    .card .card-back span {
+        top: 97px;
+        right: 45px;
+    }
+
+    .card .card-front>span {
+        top: 175px;
+    }
+
+    .card .card-front .card-number {
+        font-size: 1.5rem;
+        letter-spacing: 4px;
+        top: 105px;
+    }
+
+    .card .card-front div {
+        top: 175px;
+    }
+}
+
+form,
+.complete {
+    margin-top: 70px;
+    margin-inline: auto;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+form>div,
+.complete>* {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: hsl(278, 68%, 11%);
+    margin-bottom: 16px;
+}
+
+form .ch-date-cvc {
+    flex-direction: row;
+}
+
+form .ch-date-cvc :is(.date, .cvc) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-basis: 50%;
+}
+
+form .ch-date-cvc .datez {
+    display: flex;
+    gap: 10px;
+}
+
+form input:not([type='submit']) {
+    position: relative;
+    border: 1px solid hsl(270, 3%, 87%);
+    border-radius: 8px;
+    font-size: 18px;
+    padding: 15px;
+    color: hsl(278, 68%, 11%);
+    font-weight: bold;
+    width: 100%;
+    transition: 0.3s;
+}
+
+form input:focus {
+    border-color: transparent;
+    outline: none;
+}
+
+form input[type='submit'],
+.complete>button {
+    position: relative;
+    border: 1px solid hsl(270, 3%, 87%);
+    border-radius: 8px;
+    font-size: 18px;
+    padding: 15px;
+    background-color: hsl(278, 68%, 11%);
+    color: white;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form .wrapper.focused {
+    position: relative;
+}
+
+form .wrapper.focused::before {
+    content: '';
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    border-radius: 8px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    background-image: linear-gradient(to right, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+    transition: 0.3s;
+}
+
+span.error,
+.month-error {
+    color: hsl(0, 100%, 66%);
+    font-size: 12px;
+    text-transform: none;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card-sec.error span.error {
+    opacity: 1;
+}
+
+.card-sec.error input {
+    border-color: hsl(0, 100%, 66%);
+}
+
+.complete {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    scale: 2;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.3s, scale 0.3s;
+}
+
+.complete.completion {
+    scale: 1;
+    opacity: 1;
+}
+
+.complete img {
+    display: inline;
+}
+
+.complete h2 {
+    font-size: 26px;
+}
+
+.complete p {
+    color: hsl(279, 6%, 55%);
+    margin-bottom: 20px;
+}
+
+.complete>button {
+    align-items: center;
+}
+
+@media (min-width:769px) {
+
+    form,
+    .complete {
+        width: min(50%, 30vw);
+        margin: auto;
+    }
+}
