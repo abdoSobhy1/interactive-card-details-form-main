@@ -27,22 +27,24 @@ yearIn.onkeyup = () => {
 
 let cardIn = document.querySelector("#number");
 let cardOut = document.querySelector(".card-number");
-cardIn.oninput = (e) => {
+cardIn.onkeyup = (e) => {
   if (
     (cardIn.value.length == 4 ||
       cardIn.value.length == 9 ||
       cardIn.value.length == 14 ||
       e.which == 32) &
     (e.which !== 8)
-  )
+  ) {
     e.preventDefault();
+  }
   if (
     (cardIn.value.length == 4 ||
       cardIn.value.length == 9 ||
       cardIn.value.length == 14) &&
     e.which !== 8
-  )
+  ) {
     cardIn.value = cardIn.value + " ";
+  }
   let x = cardIn.value;
   cardOut.innerHTML = "";
   cardOut.innerHTML += x;
@@ -55,7 +57,15 @@ cardIn.oninput = (e) => {
   }
   checkNumbers(cardIn.value);
 };
-
+cardIn.onkeydown = (e) => {
+  if (e.which === 8) {
+    if (cardIn.value[cardIn.value.length - 1] == " ") {
+      e.preventDefault();
+      let x = cardIn.value;
+      cardIn.value = x.slice(0, -2);
+    }
+  }
+};
 let nameIn = document.querySelector("#name");
 let nameOut = document.querySelector(".name");
 nameIn.onkeyup = () => {
