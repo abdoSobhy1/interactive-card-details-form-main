@@ -32,8 +32,8 @@ cardIn.onkeyup = (e) => {
     (cardIn.value.length == 4 ||
       cardIn.value.length == 9 ||
       cardIn.value.length == 14 ||
-      e.which == 32) &
-    (e.which !== 8)
+      e.which == 32) &&
+    e.which !== 8
   ) {
     e.preventDefault();
   }
